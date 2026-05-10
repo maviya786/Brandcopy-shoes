@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAV Trading Ltd - Global Investment & Trading Solutions</title>
+    <meta name="description" content="MAV Trading Ltd - Premier global investment firm specializing in forex, commodities, equities, and digital assets. Trusted partner for institutional and retail investors.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #1e40af;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: #334155;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary); }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(30,58,138,0.4);
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30,58,138,0.5);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--primary-dark) 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 120px 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        .service-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 35px 60px rgba(0,0,0,0.15);
+        }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* About */
+        .about {
+            background: var(--light);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: var(--dark);
+            color: white;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover { color: var(--secondary); }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-content { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .section { padding: 80px 1rem; }
+        }
+        
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i> MAV Trading Ltd
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-btn">Get Started</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Global Trading Excellence</h1>
+            <p>MAV Trading Ltd delivers institutional-grade investment solutions across forex, commodities, equities, and digital assets. Trusted by 10,000+ clients worldwide.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">$2.5B+</span>
+                    <span>AUM</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span>Years</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span>Success Rate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section scroll-animate">
+        <h2 class="section-title">Our Trading Services</h2>
+        <div class="services-grid">
+            <div class="service-card scroll-animate">
+                <div class="service-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3>Forex Trading</h3>
+                <p>Access 70+ currency pairs with tight spreads and lightning-fast execution. Advanced algorithmic trading powered by AI.</p>
+            </div>
+            <div class="service-card scroll-animate">
+                <div class="service-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h3>Commodities</h3>
+                <p>Trade gold, oil, silver, and agricultural products with deep liquidity and 24/7 market access.</p>
+            </div>
+            <div class="service-card scroll-animate">
+                <div class="service-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3>Equities & ETFs</h3>
+                <p>Global stock market access across 50+ exchanges. Diversified ETF portfolios for long-term growth.</p>
+            </div>
+            <div class="service-card scroll-animate">
+                <div class="service-icon">
+                    <i class="fas fa-bitcoin"></i>
+                </div>
+                <h3>Crypto Assets</h3>
+                <p>Secure trading of Bitcoin, Ethereum, and 100+ altcoins with institutional-grade custody solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="about-content">
+            <div class="scroll-animate">
+                <h2>Why Choose MAV Trading?</h2>
+                <p>Founded in 2008, MAV Trading Ltd has evolved into a global leader in investment management. Our proprietary algorithms, risk management systems, and dedicated team deliver consistent returns in all market conditions.</p>
+                <ul style="margin-top: 2rem; padding-left: 1.5rem;">
+                    <li><i class="fas fa-check" style="color:var(--accent);margin-right:0.5rem;"></i>Regulated by FCA, CySEC & ASIC</li>
+                    <li><i class="fas fa-check" style="color:var(--accent);margin-right:0.5rem;"></i>99.9% uptime with Tier-1 infrastructure</li>
+                    <li><i class="fas fa-check" style="color:var(--accent);margin-right:0.5rem;"></i>24/7 multilingual support</li>
+                </ul>
+            </div>
+            <div class="scroll-animate" style="text-align:center;">
+                <div style="background:white;padding:3rem;border-radius:20px;box-shadow:var(--shadow);height:400px;display:flex;align-items:center;justify-content:center;">
+                    <div>
+                        <div style="font-size:4rem;color:var(--primary);margin-bottom:1rem;"><i class="fas fa-shield-alt"></i></div>
+                        <h3 style="color:var(--dark);">Your Capital is Protected</h3>
+                        <p style="color:#64748b;">Segregated client accounts • £1M insurance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section testimonials">
+        <h2 class="section-title" style="color:white;">What Our Clients Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial scroll-animate">
+                <div class="testimonial-text">"MAV Trading transformed our portfolio. Consistent 18% annual returns with minimal drawdown. Professional team."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JD</div>
+                    <div>
+                        <div style="font-weight:600;margin-bottom:0.25rem;">John Davis</div>
+                        <div style="opacity:0.8;font-size:0.9rem;">Hedge Fund Manager</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial scroll-animate">
+                <div class="testimonial-text">"Best platform I've used. Lightning-fast execution and exceptional support. Highly recommended for serious traders."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SM</div>
+                    <div>
+                        <div style="font-weight:600;margin-bottom:0.25rem;">Sarah Mitchell</div>
+                        <div style="opacity:0.8;font-size:0.9rem;">Prop Trader</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial scroll-animate">
+                <div class="testimonial-text">"From retail to institutional, MAV delivers. Their risk management is world-class. 5 stars."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RM</div>
+                    <div>
+                        <div style="font-weight:600;margin-bottom:0.25rem;">Robert Kim</div>
+                        <div style="opacity:0.8;font-size:0.9rem;">Family Office</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section cta-section">
+        <div class="cta-content">
+            <h2 style="font-size:3.5rem;margin-bottom:1.5rem;">Ready to Start Trading?</h2>
+            <p style="font-size:1.3rem;margin-bottom:3rem;opacity:0.95;">Join 10,000+ successful traders. Open your account in 3 minutes.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+                <a href="#" class="cta-btn" style="padding:18px 40px;font-size:1.1rem;">Open Account</a>
+                <a href="#" class="cta-btn" style="background:transparent;border:2px solid white;color:white;">Live Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>MAV Trading Ltd</h3>
+                <p>Global leader in investment solutions since 2008. Regulated • Secure • Proven.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">Forex</a>
+                <a href="#services">Commodities</a>
+                <a href="#services">Equities</a>
+                <a href="#services">Crypto</a>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="#about">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">News</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>info@mavtrading.com</p>
+                <p>+44 20 1234 5678</p>
+                <p>London, UK | Dubai, UAE</p>
+            </div>
+        </div>
+        <div style="text-align:center;padding-top:2rem;border-top:1px solid #334155;opacity:0.7;">
+            <p>&copy; 2024 MAV Trading Ltd. All rights reserved. FCA Registered | Terms apply.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255,255,255,0.98)';
+                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255,255,255,0.95)';
+                header.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Counter animation for hero stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.floor(current) + (target > 1000 ? 'k' : target > 1000000 ? 'M' : '') + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = counter.textContent.replace('k', 'K').replace('M', 'B');
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when hero is visible
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        });
+        heroObserver.observe(document.querySelector('.hero'));
+    </script>
+</body>
+</html>
